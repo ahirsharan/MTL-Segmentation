@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--dataset_dir', type=str, default='./COCO/') # Dataset folder
 
     # Parameters for meta-train phase    
-    parser.add_argument('--metaset_dir', type=str, default='./Fewshot/') # Dataset folder
+    parser.add_argument('--mdataset_dir', type=str, default='./Fewshot/') # Dataset folder
     parser.add_argument('--max_epoch', type=int, default=100) # Epoch number for meta-train phase
     parser.add_argument('--num_batch', type=int, default=50) # The number for different tasks used for meta-train
     parser.add_argument('--num_classes', type=int, default=184)# Total number of classes  
