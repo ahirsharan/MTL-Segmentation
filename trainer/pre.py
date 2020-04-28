@@ -17,7 +17,7 @@ from dataloader.mdataset_loader import mDatasetLoader as mDataset
 
 # torch.cuda.set_device(1)
 class PreTrainer(object):
-    """The class that contains the code for the pretrain phase."""
+"""The class that contains the code for the pretrain phase."""
     def __init__(self, args):
         # Set the folder to save the records and checkpoints
         log_base_dir = './logs/'
@@ -44,43 +44,47 @@ class PreTrainer(object):
         self.val_sampler = CategoriesSampler(self.valset.labeln, 50, self.args.way, self.args.shot + self.args.val_query,self.args.shot)
         self.val_loader = DataLoader(dataset=self.valset, batch_sampler=self.val_sampler, num_workers=8, pin_memory=True)
 
-  
+
         # Build pretrain model
         self.model = MtlLearner(self.args, mode='train')
-
+        print(self.model)
+        self.FL=FocalLoss()
+        self.CD=CE_DiceLoss()
+        self.LS=LovaszSoftmax()
+        # Set optimizer 
         # Set optimizer 
         self.optimizer = torch.optim.SGD([{'params': self.model.encoder.parameters(), 'lr': self.args.pre_lr}], \
                 momentum=self.args.pre_custom_momentum, nesterov=True, weight_decay=self.args.pre_custom_weight_decay)
-       
+
             # Set learning rate scheduler 
         self.lr_scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=self.args.pre_step_size, \
             gamma=self.args.pre_gamma)        
-        
+
         # Set model to GPU
         if torch.cuda.is_available():
             torch.backends.cudnn.benchmark = True
             self.model = self.model.cuda()
-        
+
     def save_model(self, name):
         """The function to save checkpoints.
         Args:
           name: the name for saved checkpoint
         """  
         torch.save(dict(params=self.model.encoder.state_dict()), osp.join(self.args.save_path, name + '.pth'))
-        
+
     def _reset_metrics(self):
         #self.batch_time = AverageMeter()
         #self.data_time = AverageMeter()
         #self.total_loss = AverageMeter()
         self.total_inter, self.total_union = 0, 0
         self.total_correct, self.total_label = 0, 0
-    
+
     def _update_seg_metrics(self, correct, labeled, inter, union):
         self.total_correct += correct
         self.total_label += labeled
         self.total_inter += inter
         self.total_union += union
-    
+
     def _get_seg_metrics(self):
         pixAcc = 1.0 * self.total_correct / (np.spacing(1) + self.total_label)
         IoU = 1.0 * self.total_inter / (np.spacing(1) + self.total_union)
@@ -121,11 +125,11 @@ class PreTrainer(object):
             # Set averager classes to record training losses and accuracies
             train_loss_averager = Averager()
             train_acc_averager = Averager()
-                
+
             # Using tqdm to read samples from train loader
             tqdm_gen = tqdm.tqdm(self.train_loader)
             self._reset_metrics()
-            
+
             for i, batch in enumerate(tqdm_gen, 1):
                 # Update global count number 
                 global_count = global_count + 1
@@ -134,11 +138,11 @@ class PreTrainer(object):
                 else:
                     data = batch[0]
                     label = batch[1]
-    
+
                 # Output logits for model
                 logits = self.model(data)
                 # Calculate train loss
-                loss = FocalLoss(logits, label) + CE_DiceLoss(logits,label) + LovaszSoftmax(logits,label)
+                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate train accuracy
                 seg_metrics = eval_metrics(logits, label, self.num_classes)
                 self._update_seg_metrics(*seg_metrics)
@@ -168,11 +172,11 @@ class PreTrainer(object):
             val_loss_averager = Averager()
             val_acc_averager = Averager()
 
-    
+
             # Print previous information  
             if epoch % 10 == 0:
                 print('Best Epoch {}, Best Val acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']))
-                
+
             # Run meta-validation
             self._reset_metrics()
             for i, batch in enumerate(self.val_loader, 1):
@@ -184,22 +188,22 @@ class PreTrainer(object):
                 p = self.args.way*self.args.shot
                 data_shot, data_query = data[:p], data[p:]
                 label_shot,label=labels[:p],labels[p:]
-                
-                logits = self.model((data_shot, label_shot, data_query))
+
+                logits = self.model(data_shot, label_shot, data_query)
                 # Calculate preval loss
-                loss = FocalLoss(logits, label) + CE_DiceLoss(logits,label) + LovaszSoftmax(logits,label)
+                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate val accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics().values()
-                
+
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
 
             # Update validation averagers
             val_loss_averager = val_loss_averager.item()
             val_acc_averager = val_acc_averager.item()
-      
+
             # Print loss and accuracy for this epoch
             print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,mIoU))
 
@@ -209,7 +213,7 @@ class PreTrainer(object):
                 trlog['max_acc_epoch'] = epoch
                 print("model saved in max_acc")
                 self.save_model('max_acc')
-                
+
             # Save model every 10 epochs
             if epoch % 10 == 0:
                 self.save_model('epoch'+str(epoch))
@@ -226,4 +230,3 @@ class PreTrainer(object):
             if epoch % 10 == 0:
                 print('Running Time: {}, Estimated Time: {}'.format(timer.measure(), timer.measure(epoch / self.args.max_epoch)))
                 # writer.close()
-        
