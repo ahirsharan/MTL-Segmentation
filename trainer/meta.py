@@ -45,7 +45,7 @@ class MetaTrainer(object):
 
         # Load meta-train set
         self.trainset = mDataset('meta', self.args)
-        self.train_sampler = CategoriesSampler(self.trainset.labeln, self.args.num_batch, self.args.way, self.args.shot + self.args.train_query, self.args.shot)
+        self.train_sampler = CategoriesSampler(self.trainset.labeln, self.args.num_batch, self.args.way, self.args.shot + self.args.train_query,self.args.shot)
         self.train_loader = DataLoader(dataset=self.trainset, batch_sampler=self.train_sampler, num_workers=8, pin_memory=True)
 
         # Load meta-val set
