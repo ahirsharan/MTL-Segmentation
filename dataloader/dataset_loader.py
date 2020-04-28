@@ -69,18 +69,18 @@ class DatasetLoader(Dataset):
 
         # Transformation for label BW
         if train_aug:
-            image_size = 100
+            image_size = 142
             self.btransform = transforms.Compose([
-                transforms.Resize(115),
-                transforms.RandomResizedCrop(110),
+                transforms.Resize(160),
+                transforms.RandomResizedCrop(150),
                 transforms.CenterCrop(image_size),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
                 transforms.Normalize(np.array([x / 255.0 for x in [125.3]]), np.array([x / 255.0 for x in [63.0]]))])
         else:
-            image_size = 100
+            image_size = 142
             self.btransform = transforms.Compose([
-                transforms.Resize(110),
+                transforms.Resize(160),
                 transforms.CenterCrop(image_size),
                 transforms.ToTensor(),
                 transforms.Normalize(np.array([x / 255.0 for x in [125.3]]),np.array([x / 255.0 for x in [63.0]]))])
