@@ -5,10 +5,11 @@ import numpy as np
 
 class CategoriesSampler():
     """The class to generate episodic data"""
-    def __init__(self, labeln, n_batch, n_cls, n_per):
+    def __init__(self, labeln, n_batch, n_cls, n_per,n_shot):
         self.n_batch = n_batch
         self.n_cls = n_cls
         self.n_per = n_per
+        self.n_shot = n_shot
 
         labeln = np.array(labeln)
         self.m_ind = []
