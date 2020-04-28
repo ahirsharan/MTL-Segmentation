@@ -49,8 +49,7 @@ class PreTrainer(object):
         self.model = MtlLearner(self.args, mode='train')
 
         # Set optimizer 
-        self.optimizer = torch.optim.SGD([{'params': self.model.encoder.parameters(), 'lr': self.args.pre_lr}, \
-            {'params': self.model.pre_fc.parameters(), 'lr': self.args.pre_lr}], \
+        self.optimizer = torch.optim.SGD([{'params': self.model.encoder.parameters(), 'lr': self.args.pre_lr}], \
                 momentum=self.args.pre_custom_momentum, nesterov=True, weight_decay=self.args.pre_custom_weight_decay)
        
             # Set learning rate scheduler 
