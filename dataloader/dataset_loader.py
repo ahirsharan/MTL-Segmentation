@@ -87,7 +87,7 @@ class DatasetLoader(Dataset):
         return len(self.data)
 
     def __getitem__(self, i):
-        num_classes=self.num_classes
+        num_classes=self.args.num_classes
         inppath, labpath = self.data[i], self.label[i]
         inpimage = self.transform(Image.open(inppath).convert('RGB'))
         labimage = self.btransform(Image.open(labpath).convert('LA'))
