@@ -29,10 +29,10 @@ class CategoriesSampler():
                 pos = torch.randperm(len(l))[:self.n_per]
                 m=l[pos]
                 
-                for i in range(0,self.shot):
+                for i in range(0,self.args.shot):
                     lr.append(m[i])
                     
-                for i in range(self.shot,self.n_per):
+                for i in range(self.args.shot,self.n_per):
                     dr.append(m[i])
                     
             batch=[]
