@@ -45,7 +45,7 @@ class MtlLearner(nn.Module):
         self.update_lr = args.base_lr
         self.update_step = args.update_step
         self.base_learner = BaseLearner(args)
-        num_classes=self.num_classes
+        num_classes=self.args.num_classes
         if self.mode == 'meta':
             self.encoder = UNetMtl(3,num_classes)  
         else:
