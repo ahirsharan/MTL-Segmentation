@@ -38,8 +38,8 @@ class DatasetLoader(Dataset):
             #this_folder_images = os.listdir(this_folder)
             # print(idx)
             # exit()
-        for inpimage_path,labimage_path in input_images,label_images:
-            data.append(osp.join(THE_PATH, inpimage_path))
+        for labimage_path in label_images:
+            data.append(osp.join(THE_PATH, labimage_path[:-3]+'jpg'))
             label.append(osp.join(THE_PATHL, labimage_path))
 
         # Set data, label and class number to be accessable from outside
