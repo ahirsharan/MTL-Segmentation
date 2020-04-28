@@ -11,6 +11,7 @@ import numpy as np
 class DatasetLoader(Dataset):
     """The class to load the dataset"""
     def __init__(self, setname, args, train_aug=False):
+        self.args=args
         # Set the path according to train, val and test        
         if setname=='train':
             THE_PATH = osp.join(args.dataset_dir, 'train/')
