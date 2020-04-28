@@ -11,7 +11,8 @@ import numpy as np
 class mDatasetLoader(Dataset):
     """The class to load the dataset"""
     def __init__(self, setname, args, train_aug=False):
-        # Set the path according to train, val and test        
+        # Set the path according to train, val and test
+        self.args=args
         if setname=='meta':
             THE_PATH = osp.join(args.mdataset_dir, 'train/images')
             THE_PATHL = osp.join(args.mdataset_dir, 'train/labels')
