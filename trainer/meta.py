@@ -98,14 +98,15 @@ class MetaTrainer(object):
         self.total_inter += inter
         self.total_union += union
     
-    def _get_seg_metrics(self):
+    def _get_seg_metrics(self,n_class):
+        self.n_class=n_class
         pixAcc = 1.0 * self.total_correct / (np.spacing(1) + self.total_label)
         IoU = 1.0 * self.total_inter / (np.spacing(1) + self.total_union)
         mIoU = IoU.mean()
         return {
             "Pixel_Accuracy": np.round(pixAcc, 3),
             "Mean_IoU": np.round(mIoU, 3),
-            "Class_IoU": dict(zip(range(self.num_classes), np.round(IoU, 3)))
+            "Class_IoU": dict(zip(range(self.n_class), np.round(IoU, 3)))
         }
         
     def save_model(self, name):
@@ -177,7 +178,7 @@ class MetaTrainer(object):
                 # Calculate meta-train accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics().values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
                 
                 # Write the tensorboardX records
                 writer.add_scalar('data/loss', float(loss), global_count)
@@ -304,7 +305,7 @@ class MetaTrainer(object):
             logits = self.model((data_shot, label_shot, data_query))
             seg_metrics = eval_metrics(logits, label, self.args.way)
             self._update_seg_metrics(*seg_metrics)
-            pixAcc, mIoU, _ = self._get_seg_metrics().values()
+            pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
             
             ave_acc.add(pixAcc)
             #test_acc_record[i-1] = acc
@@ -328,7 +329,5 @@ class MetaTrainer(object):
                 count=count+1
             
         # Calculate the confidence interval, update the logs
-        #m, pm = compute_confidence_interval(test_acc_record)
         print('Val Best Epoch {}, Acc {:.4f}, Test Acc {:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc'], ave_acc.item()))
-        #print('Test Acc {:.4f} + {:.4f}'.format(m, pm))
         
