@@ -63,15 +63,15 @@ class mDatasetLoader(Dataset):
                 transforms.RandomResizedCrop(288),
                 transforms.CenterCrop(image_size),
                 transforms.RandomHorizontalFlip(),
-                transforms.ToTensor(),
-                transforms.Normalize(np.array([x / 255.0 for x in [125.3, 123.0, 113.9]]), np.array([x / 255.0 for x in [63.0, 62.1, 66.7]]))])
+                transforms.ToTensor()])
+                #transforms.Normalize(np.array([x / 255.0 for x in [125.3, 123.0, 113.9]]), np.array([x / 255.0 for x in [63.0, 62.1, 66.7]]))])
         else:
             image_size = 284
             self.transform = transforms.Compose([
                 transforms.Resize(290),
                 transforms.CenterCrop(image_size),
-                transforms.ToTensor(),
-                transforms.Normalize(np.array([x / 255.0 for x in [125.3, 123.0, 113.9]]),np.array([x / 255.0 for x in [63.0, 62.1, 66.7]]))])
+                transforms.ToTensor()])
+                #transforms.Normalize(np.array([x / 255.0 for x in [125.3, 123.0, 113.9]]),np.array([x / 255.0 for x in [63.0, 62.1, 66.7]]))])
 
 
         # Transformation for label BW
@@ -82,15 +82,15 @@ class mDatasetLoader(Dataset):
                 transforms.RandomResizedCrop(150),
                 transforms.CenterCrop(image_size),
                 transforms.RandomHorizontalFlip(),
-                transforms.ToTensor(),
-                transforms.Normalize(np.array([x / 255.0 for x in [125.3]]), np.array([x / 255.0 for x in [63.0]]))])
+                transforms.ToTensor()])
+                #transforms.Normalize(np.array([x / 255.0 for x in [125.3]]), np.array([x / 255.0 for x in [63.0]]))])
         else:
             image_size = 142
             self.btransform = transforms.Compose([
                 transforms.Resize(160),
                 transforms.CenterCrop(image_size),
-                transforms.ToTensor(),
-                transforms.Normalize(np.array([x / 255.0 for x in [125.3]]),np.array([x / 255.0 for x in [63.0]]))])
+                transforms.ToTensor()])
+                #transforms.Normalize(np.array([x / 255.0 for x in [125.3]]),np.array([x / 255.0 for x in [63.0]]))])
     
     def __len__(self):
         return len(self.data)
@@ -100,4 +100,5 @@ class mDatasetLoader(Dataset):
         inpimage = self.transform(Image.open(inppath).convert('RGB'))
         labimage = self.btransform(Image.open(labpath).convert('LA'))
         labimage=(self.args.way-1)*labimage
+        labimage=labimage.long()
         return inpimage,labimage[0],idx
