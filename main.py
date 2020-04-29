@@ -27,7 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--shot', type=int, default=1) # Shot number, how many samples for one class in a task
     parser.add_argument('--train_query', type=int, default=3) # The number of meta train samples for each class in a task
     parser.add_argument('--val_query', type=int, default=3) # The number of meta val samples for each class in a task
-    parser.add_argument('--test_query', type=int, default=2) # The number of meta test samples for each class in a task
+    parser.add_argument('--test_query', type=int, default=1) # The number of meta test samples for each class in a task
     parser.add_argument('--meta_lr1', type=float, default=0.0001) # Learning rate for SS weights
     parser.add_argument('--meta_lr2', type=float, default=0.001) # Learning rate for FC weights
     parser.add_argument('--base_lr', type=float, default=0.01) # Learning rate for the inner loop
