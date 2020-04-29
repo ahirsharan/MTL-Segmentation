@@ -189,8 +189,9 @@ class PreTrainer(object):
                 p = self.args.way*self.args.shot
                 data_shot, data_query = data[:p], data[p:]
                 label_shot,label=labels[:p],labels[p:]
-
-                logits = self.model(data_shot, label_shot, data_query)
+                
+                par=data_shot, label_shot, data_query
+                logits = self.model(par)
                 # Calculate preval loss
                 loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate val accuracy
