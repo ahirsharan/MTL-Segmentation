@@ -55,7 +55,10 @@ class MetaTrainer(object):
         
         # Build meta-transfer learning model
         self.model = MtlLearner(self.args)
-
+        self.FL=FocalLoss()
+        self.CD=CE_DiceLoss()
+        self.LS=LovaszSoftmax()
+        
         # Set optimizer 
         self.optimizer = torch.optim.Adam([{'params': filter(lambda p: p.requires_grad, self.model.encoder.parameters())}, \
             {'params': self.model.base_learner.parameters(), 'lr': self.args.meta_lr2}], lr=self.args.meta_lr1)
@@ -172,9 +175,10 @@ class MetaTrainer(object):
                 data_shot, data_query = data[:p], data[p:]
                 label_shot,label=labels[:p],labels[p:]
                 # Output logits for model
-                logits = self.model((data_shot, label_shot, data_query))
+                par=data_shot, label_shot, data_query
+                logits = self.model(par)
                 # Calculate meta-train loss
-                loss = FocalLoss(logits, label) + CE_DiceLoss(logits,label) + LovaszSoftmax(logits,label)
+                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate meta-train accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
@@ -221,10 +225,13 @@ class MetaTrainer(object):
                 p = self.args.way* self.args.shot
                 data_shot, data_query = data[:p], data[p:]
                 label_shot,label=labels[:p],labels[p:]
-                logits = self.model((data_shot, label_shot, data_query))
+                
+                par=data_shot, label_shot, data_query
+                logits = self.model(par)
                 
                 # Calculate meta val loss
-                loss = FocalLoss(logits, label) + CE_DiceLoss(logits,label) + LovaszSoftmax(logits,label)
+                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
+                
                 # Calculate meta-val accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
