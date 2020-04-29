@@ -316,8 +316,8 @@ class MetaTrainer(object):
             
             ave_acc.add(pixAcc)
             #test_acc_record[i-1] = acc
-            if i % 100 == 0:
-                print('batch {}: {Average Accuracy:.2f}({Pixel Accuracy:.2f} {IoU :.2f} )'.format(i, ave_acc.item() * 100.0, pixAcc * 100.0,mIoU))
+            #if i % 100 == 0:
+                #print('batch {}: {Average Accuracy:.2f}({Pixel Accuracy:.2f} {IoU :.2f} )'.format(i, ave_acc.item() * 100.0, pixAcc * 100.0,mIoU))
                 
             #Saving Test Image, Ground Truth Image and Predicted Image
             for j in range(len(data_query)):
