@@ -85,14 +85,15 @@ class PreTrainer(object):
         self.total_inter += inter
         self.total_union += union
 
-    def _get_seg_metrics(self):
+    def _get_seg_metrics(self,n_class):
+        self.n_class=n_class
         pixAcc = 1.0 * self.total_correct / (np.spacing(1) + self.total_label)
         IoU = 1.0 * self.total_inter / (np.spacing(1) + self.total_union)
         mIoU = IoU.mean()
         return {
             "Pixel_Accuracy": np.round(pixAcc, 3),
             "Mean_IoU": np.round(mIoU, 3),
-            "Class_IoU": dict(zip(range(self.num_classes), np.round(IoU, 3)))
+            "Class_IoU": dict(zip(range(self.n_class), np.round(IoU, 3)))
         }
 
     def train(self):
@@ -146,7 +147,7 @@ class PreTrainer(object):
                 # Calculate train accuracy
                 seg_metrics = eval_metrics(logits, label, self.num_classes)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics().values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.num_classes).values()
 
                 # Print loss and accuracy for this step
                 tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IOU={:.4f}'.format(epoch, loss.item(), pixAcc, mIoU ))
@@ -195,7 +196,7 @@ class PreTrainer(object):
                 # Calculate val accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics().values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
 
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
