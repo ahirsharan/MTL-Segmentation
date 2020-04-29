@@ -279,7 +279,7 @@ class MetaTrainer(object):
 
         # Load meta-test set
         self.test_set = mDataset('test', self.args)
-        self.sampler = CategoriesSampler(self.test_set.labeln, 100, self.args.way, self.args.shot + self.args.test_query)
+        self.sampler = CategoriesSampler(self.test_set.labeln, 100, self.args.way, self.args.shot + self.args.test_query, self.args.shot)
         self.loader = DataLoader(dataset=self.test_set, batch_sampler=self.sampler, num_workers=8, pin_memory=True)
         #self.loader = DataLoader(dataset=self.test_set,batch_size=10, shuffle=False, num_workers=8, pin_memory=True)
         # Set test accuracy recorder
