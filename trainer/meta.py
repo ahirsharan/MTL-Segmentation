@@ -188,7 +188,7 @@ class MetaTrainer(object):
                 writer.add_scalar('data/loss', float(loss), global_count)
                 writer.add_scalar('data/acc', float(pixAcc), global_count)
                 # Print loss and accuracy for this step
-                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, loss.item(), pixAcc),mIoU)
+                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, loss.item(), pixAcc*100.0,mIoU))
 
                 # Add loss and accuracy for the averagers
                 train_loss_averager.add(loss.item())
@@ -213,7 +213,7 @@ class MetaTrainer(object):
                 
             # Print previous information
             if epoch % 10 == 0:
-                print('Best Epoch {}, Best Val Acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']))
+                print('Best Epoch {}, Best Val Acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
             # Run meta-
             self._reset_metrics()
             for i, batch in enumerate(self.val_loader, 1):
@@ -247,7 +247,7 @@ class MetaTrainer(object):
             writer.add_scalar('data/val_loss', float(val_loss_averager), epoch)
             writer.add_scalar('data/val_acc', float(val_acc_averager), epoch)       
             # Print loss and accuracy for this epoch
-            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={".4f"}'.format(epoch, val_loss_averager, val_acc_averager,mIoU))
+            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,mIoU))
 
             # Update best saved model
             if val_acc_averager > trlog['max_acc']:
@@ -317,7 +317,7 @@ class MetaTrainer(object):
             ave_acc.add(pixAcc)
             #test_acc_record[i-1] = acc
             if i % 100 == 0:
-                print('batch {}: {Average Accuracy:.2f}({Pixel Accuracy:.2f} {IoU :.2f} )'.format(i, ave_acc.item() * 100, pixAcc * 100,mIoU))
+                print('batch {}: {Average Accuracy:.2f}({Pixel Accuracy:.2f} {IoU :.2f} )'.format(i, ave_acc.item() * 100.0, pixAcc * 100.0,mIoU))
                 
             #Saving Test Image, Ground Truth Image and Predicted Image
             for j in range(len(data_query)):
@@ -336,5 +336,5 @@ class MetaTrainer(object):
                 count=count+1
             
         # Calculate the confidence interval, update the logs
-        print('Val Best Epoch {}, Acc {:.4f}, Test Acc {:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc'], ave_acc.item()))
+        print('Val Best Epoch {}, Acc {:.4f}, Test Acc {:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0, ave_acc.item()*100.0))
         
