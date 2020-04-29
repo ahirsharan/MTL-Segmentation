@@ -150,7 +150,7 @@ class PreTrainer(object):
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.num_classes).values()
 
                 # Print loss and accuracy for this step
-                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IOU={:.4f}'.format(epoch, loss.item(), pixAcc, mIoU ))
+                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IOU={:.4f}'.format(epoch, loss.item(), pixAcc*100.0, mIoU ))
 
                 # Add loss and accuracy for the averagers
                 train_loss_averager.add(loss.item())
@@ -176,7 +176,7 @@ class PreTrainer(object):
 
             # Print previous information  
             if epoch % 10 == 0:
-                print('Best Epoch {}, Best Val acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']))
+                print('Best Epoch {}, Best Val acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
 
             # Run meta-validation
             self._reset_metrics()
