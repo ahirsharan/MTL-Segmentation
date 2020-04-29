@@ -321,9 +321,14 @@ class MetaTrainer(object):
                 
             #Saving Test Image, Ground Truth Image and Predicted Image
             for j in range(len(data_query)):
-                x = transforms.ToPILImage()(data_query[j]).convert("RGB")
-                y = transforms.ToPILImage()(label[j]/(1.0*(self.args.way-1))).convert("LA")
-                im =  torch.tensor(np.argmax(np.array(logits[j]),axis=0)/(1.0*(self.args.way-1))) 
+                
+                x1 = data_query[j].detach().cpu()
+                y1 = label[j].detach().cpu()
+                z1 = logits[j].detach().cpu()
+                
+                x = transforms.ToPILImage()(x1).convert("RGB")
+                y = transforms.ToPILImage()(y1 /(1.0*(self.args.way-1))).convert("LA")
+                im =  torch.tensor(np.argmax(np.array(z1),axis=0)/(1.0*(self.args.way-1))) 
                 im =  im.type(torch.FloatTensor)
                 z =  transforms.ToPILImage()(im).convert("LA")
                 
