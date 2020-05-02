@@ -5,6 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from models.unet_mtl import UNetMtl
 from utils.losses import FocalLoss,CE_DiceLoss,LovaszSoftmax
+
 class BaseLearner(nn.Module):
     """The class for inner loop."""
     def __init__(self, args):
@@ -15,15 +16,17 @@ class BaseLearner(nn.Module):
         self.vars.append(self.wt)
         self.bias = nn.Parameter(torch.zeros([self.args.way]))
         self.vars.append(self.bias)
-        self.norm = nn.ReLU(nn.BatchNorm2d(self.args.num_classes),inplace=True)
+        self.norm1 = nn.BatchNorm2d(self.args.num_classes)
+        self.norm2 = nn.ReLU(inplace=True)
         
     def forward(self, input_x, the_vars=None):
         if the_vars is None:
             the_vars = self.vars
-        norm=self.norm
+        norm1=self.norm1
+        norm2=self.norm2
         wt = the_vars[0]
         bias = the_vars[1]
-        net=F.conv2d(norm(input_x),wt,bias,stride=1,padding=1)
+        net=F.conv2d(norm2(norm1(input_x)),wt,bias,stride=1,padding=1)
         return net
 
     def parameters(self):
