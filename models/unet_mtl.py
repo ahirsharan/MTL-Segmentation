@@ -148,7 +148,7 @@ class UNetMtl(nn.Module):
         self.up2 = Up(512, 256, mtl)
         self.up3 = Up(256, 128, mtl)
         self.up4 = Up(128, 64 * factor, mtl)
-        self.outc = Down(64, n_classes, mtl)
+        self.outc = OutConv(64*factor, n_classes, mtl)
 
     def forward(self, x):
         x1 = self.inc(x)
