@@ -60,9 +60,7 @@ class mDatasetLoader(Dataset):
             image_size = 284
             self.transform = transforms.Compose([
                 transforms.Resize(290),
-                transforms.RandomResizedCrop(288),
                 transforms.CenterCrop(image_size),
-                transforms.RandomHorizontalFlip(),
                 transforms.ToTensor()])
                 #transforms.Normalize(np.array([x / 255.0 for x in [125.3, 123.0, 113.9]]), np.array([x / 255.0 for x in [63.0, 62.1, 66.7]]))])
         else:
@@ -76,18 +74,16 @@ class mDatasetLoader(Dataset):
 
         # Transformation for label BW
         if train_aug:
-            image_size = 142
+            image_size = 284
             self.btransform = transforms.Compose([
-                transforms.Resize(160),
-                transforms.RandomResizedCrop(150),
+                transforms.Resize(290),
                 transforms.CenterCrop(image_size),
-                transforms.RandomHorizontalFlip(),
                 transforms.ToTensor()])
                 #transforms.Normalize(np.array([x / 255.0 for x in [125.3]]), np.array([x / 255.0 for x in [63.0]]))])
         else:
-            image_size = 142
+            image_size = 284
             self.btransform = transforms.Compose([
-                transforms.Resize(160),
+                transforms.Resize(290),
                 transforms.CenterCrop(image_size),
                 transforms.ToTensor()])
                 #transforms.Normalize(np.array([x / 255.0 for x in [125.3]]),np.array([x / 255.0 for x in [63.0]]))])
