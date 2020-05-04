@@ -6,7 +6,7 @@
 - [Meta Transfer Learning for Few Shot Semantic Segmentation](#Meta-Transfer-Learning-for-Few-Shot-Semantic-Segmentation)
   - [Requirements](#requirements)
   - [Characteristics](#Characteristics)
-    - [Model](#model)
+    - [Model and Technique](#Model-and-Technique)
     - [Datasets](#datasets)
     - [Losses](#losses)
   - [Code structure](#code-structure)
@@ -46,7 +46,7 @@ cd MTL_Segmentation
 ```
 ## Characteristics: 
 
-### Model
+### Model and Technique
 - (**U-Net**) Convolutional Networks for Biomedical Image Segmentation (2015): [[Paper]](https://arxiv.org/abs/1505.04597)
 - (**Meta Tranfer Learning**) Meta-Transfer Learning for Few-Shot Learning: [[Paper]](http://openaccess.thecvf.com/content_CVPR_2019/papers/Sun_Meta-Transfer_Learning_for_Few-Shot_Learning_CVPR_2019_paper.pdf)
 
