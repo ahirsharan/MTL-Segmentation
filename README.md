@@ -52,7 +52,7 @@ cd MTL_Segmentation
 
 ### Datasets
 
-- **COCO Stuff:** For COCO, there is two partitions, CocoStuff10k with only 10k that are used for training the evaluation, note that this dataset is outdated, can be used for small scale testing and training, and can be downloaded [here](https://github.com/nightrome/cocostuff10k). For the official dataset with all of the training 164k examples, it can be downloaded from the official [website](http://cocodataset.org/#download).\
+- **COCO Stuff:** For COCO, there is two partitions, CocoStuff10k with only 10k that are used for training the evaluation, note that this dataset is outdated, can be used for small scale testing and training, and can be downloaded [here](https://github.com/nightrome/cocostuff10k). For the official dataset with all of the training 164k examples, it can be downloaded from the official [website](http://cocodataset.org/#download).
 
 - **Few-Shot:** For Few Shot, there are 1000 object classes folder each with 10 images with ground truth mask for segmentation. This dataset can be used for few shot learning and can be downloaded [here](https://drive.google.com/file/d/16TgqOeI_0P41Eh3jWQlxlRXG9KIqtMgI/view).
 
@@ -128,7 +128,7 @@ Hyperparameters and options in `main.py`.
 - `train_query` The number of training samples for each class in a task 
 - `val_query` The number of test samples for each class in a task
 - `meta_lr1` Learning rate for SS weights
-- `meta_lr2` Learning rate for FC weights
+- `meta_lr2` Learning rate for Base learner weights (meta task)
 - `base_lr` Learning rate for the inner loop
 - `update_step` The number of updates for the inner loop
 - `step_size` The number of epochs to reduce the meta learning rates
