@@ -1,9 +1,9 @@
-# Meta Transfer Learning for Few Shot Semantic Segmentation
+## Meta Transfer Learning for Few Shot Semantic Segmentation using U-Net
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <!-- TOC -->
 
-- [Meta Transfer Learning for Few Shot Semantic Segmentation](#Meta-Transfer-Learning-for-Few-Shot-Semantic-Segmentation)
+- [Meta Transfer Learning for Few Shot Semantic Segmentation using U-Net](#Meta-Transfer-Learning-for-Few-Shot-Semantic-Segmentation-using-U-Net)
   - [Requirements](#requirements)
   - [Characteristics](#Characteristics)
     - [Model and Technique](#Model-and-Technique)
