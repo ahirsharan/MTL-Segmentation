@@ -33,16 +33,10 @@ conda install pytorch=0.4.0
 conda install torchvision -c pytorch
 ```
 
-Install other requirements:
-```bash
-pip install tqdm tensorboardX miniimagenettools
-```
-
 Clone this repository:
 
 ```bash
 git clone https://github.com/ahirsharan/MTL_Segmentation.git
-cd MTL_Segmentation
 ```
 ## Characteristics: 
 
