@@ -3,7 +3,7 @@
 
 <!-- TOC -->
 
-- [Meta Transfer Learning for Few Shot Semantic Segmentation](#Meta Transfer Learning for Few Shot Semantic Segmentation)
+- [Meta Transfer Learning for Few Shot Semantic Segmentation](#Meta-Transfer-Learning-for-Few-Shot-Semantic-Segmentation)
   - [Requirements](#requirements)
   - [Characteristics](#Characteristics)
     - [Model](#model)
