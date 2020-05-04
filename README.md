@@ -65,7 +65,7 @@ In addition to the Cross-Entorpy loss, there is also:
 
 
 ## Code Structure
-The code structure is based on [MTL-template](hhttps://github.com/yaoyao-liu/meta-transfer-learning) and [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation). 
+The code structure is based on [MTL-template](https://github.com/yaoyao-liu/meta-transfer-learning) and [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation). 
 
 ```
 .
