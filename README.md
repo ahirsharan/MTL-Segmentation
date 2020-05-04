@@ -10,8 +10,8 @@
     - [Datasets](#datasets)
     - [Losses](#losses)
   - [Code structure](#code-structure)
-  - [Running Experiments](#Running Experiments)
-  - [Hyperparameters and Options](#Hyperparameters and Options)
+  - [Running Experiments](#Running-Experiments)
+  - [Hyperparameters and Options](#Hyperparameters-and-Options)
   - [Acknowledgement](#acknowledgement)
 
 <!-- /TOC -->
@@ -144,4 +144,4 @@ Hyperparameters and options in `main.py`.
 
 ## Acknowledgement
 - [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation)
-- [Meta-Transfer Learning for Few-Shot Learning](hhttps://github.com/yaoyao-liu/meta-transfer-learning)
+- [Meta-Transfer Learning for Few-Shot Learning](https://github.com/yaoyao-liu/meta-transfer-learning)
