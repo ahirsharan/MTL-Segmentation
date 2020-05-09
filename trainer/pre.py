@@ -9,6 +9,7 @@ import numpy as np
 from utils.metrics import eval_metrics
 from torch.utils.data import DataLoader
 from models.mtl import MtlLearner
+from tensorboardX import SummaryWriter
 from dataloader.samplers import CategoriesSampler 
 from utils.losses import FocalLoss,CE_DiceLoss,LovaszSoftmax
 from utils.misc import Averager, Timer, ensure_path
@@ -114,7 +115,7 @@ class PreTrainer(object):
         # Set global count to zero
         global_count = 0
         # Set tensorboardX
-        # writer = SummaryWriter(comment=self.args.save_path)
+        writer = SummaryWriter(comment=self.args.save_path)
 
         # Start pretrain
         for epoch in range(1, self.args.pre_max_epoch + 1):
@@ -126,6 +127,7 @@ class PreTrainer(object):
             # Set averager classes to record training losses and accuracies
             train_loss_averager = Averager()
             train_acc_averager = Averager()
+            train_iou_averager = Averager()
 
             # Using tqdm to read samples from train loader
             tqdm_gen = tqdm.tqdm(self.train_loader)
@@ -155,6 +157,7 @@ class PreTrainer(object):
                 # Add loss and accuracy for the averagers
                 train_loss_averager.add(loss.item())
                 train_acc_averager.add(pixAcc)
+                train_iou_averager.add(mIoU)
 
                 # Loss backwards and optimizer updates
                 self.optimizer.zero_grad()
@@ -164,7 +167,14 @@ class PreTrainer(object):
             # Update the averagers
             train_loss_averager = train_loss_averager.item()
             train_acc_averager = train_acc_averager.item()
+            train_iou_averager = train_iou_averager.item()
 
+            writer.add_scalar('data/train_loss(Pre)', float(train_loss_averager), epoch)
+            writer.add_scalar('data/train_acc(Pre)', float(train_acc_averager), epoch) 
+            writer.add_scalar('data/train_iou (Pre)', float(train_iou_averager), epoch)
+            
+            print('Epoch {}, Train: Loss={:.4f}, Acc={:.4f}, IoU={:.4f}'.format(epoch, train_loss_averager, train_acc_averager*100.0,train_iou_averager))        
+            
             # Start validation for this epoch, set model to eval mode
             self.model.eval()
             self.model.mode = 'val'
@@ -172,7 +182,7 @@ class PreTrainer(object):
             # Set averager classes to record validation losses and accuracies
             val_loss_averager = Averager()
             val_acc_averager = Averager()
-
+            val_iou_averager = Averager()
 
             # Print previous information  
             if epoch % 10 == 0:
@@ -201,13 +211,15 @@ class PreTrainer(object):
 
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
+                val_iou_averager.add(mIoU)  
 
             # Update validation averagers
             val_loss_averager = val_loss_averager.item()
             val_acc_averager = val_acc_averager.item()
+            val_iou_averager = val_iou_averager.item()
 
             # Print loss and accuracy for this epoch
-            print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,mIoU))
+            print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,val_iou_averager))
 
             # Update best saved model
             if val_acc_averager > trlog['max_acc']:
