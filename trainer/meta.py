@@ -157,8 +157,8 @@ class MetaTrainer(object):
             # Set averager classes to record training losses and accuracies
             train_loss_averager = Averager()
             train_acc_averager = Averager()
+            train_iou_averager = Averager()
 
-                    
             # Using tqdm to read samples from train loader
             tqdm_gen = tqdm.tqdm(self.train_loader)
             self._reset_metrics()
@@ -184,15 +184,13 @@ class MetaTrainer(object):
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
                 
-                # Write the tensorboardX records
-                writer.add_scalar('data/loss', float(loss), global_count)
-                writer.add_scalar('data/acc', float(pixAcc), global_count)
                 # Print loss and accuracy for this step
                 tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, loss.item(), pixAcc*100.0,mIoU))
 
                 # Add loss and accuracy for the averagers
                 train_loss_averager.add(loss.item())
                 train_acc_averager.add(pixAcc)
+                train_iou_averager.add(mIoU)
 
                 # Loss backwards and optimizer updates
                 self.optimizer.zero_grad()
@@ -202,19 +200,25 @@ class MetaTrainer(object):
             # Update the averagers
             train_loss_averager = train_loss_averager.item()
             train_acc_averager = train_acc_averager.item()
+            train_iou_averager = train_iou_averager.item()
 
+            writer.add_scalar('data/train_loss (Meta)', float(train_loss_averager), epoch)
+            writer.add_scalar('data/train_acc (Meta)', float(train_acc_averager), epoch)  
+            writer.add_scalar('data/train_iou (Meta)', float(train_iou_averager), epoch)
+            
             # Start validation for this epoch, set model to eval mode
             self.model.eval()
 
             # Set averager classes to record validation losses and accuracies
             val_loss_averager = Averager()
             val_acc_averager = Averager()
-
+            val_iou_averager = Averager()
                 
             # Print previous information
             if epoch % 10 == 0:
                 print('Best Epoch {}, Best Val Acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
-            # Run meta-
+                
+            # Run meta
             self._reset_metrics()
             for i, batch in enumerate(self.val_loader, 1):
                 if torch.cuda.is_available():
@@ -239,15 +243,20 @@ class MetaTrainer(object):
 
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
+                val_iou_averager.add(mIoU)
 
             # Update validation averagers
             val_loss_averager = val_loss_averager.item()
             val_acc_averager = val_acc_averager.item()
+            val_iou_averager = val_iou_averager.item()
+            
             # Write the tensorboardX records
-            writer.add_scalar('data/val_loss', float(val_loss_averager), epoch)
-            writer.add_scalar('data/val_acc', float(val_acc_averager), epoch)       
+            writer.add_scalar('data/val_loss (Meta)', float(val_loss_averager), epoch)
+            writer.add_scalar('data/val_acc (Meta)', float(val_acc_averager), epoch)  
+            writer.add_scalar('data/val_iou (Meta)', float(val_iou_averager), epoch)
+            
             # Print loss and accuracy for this epoch
-            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,mIoU))
+            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,val_iou_averager))
 
             # Update best saved model
             if val_acc_averager > trlog['max_acc']:
@@ -296,7 +305,6 @@ class MetaTrainer(object):
         # Set accuracy averager
         ave_acc = Averager()
 
-        
         # Start meta-test
         self._reset_metrics()
         count=1
