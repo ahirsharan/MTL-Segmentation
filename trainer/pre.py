@@ -217,7 +217,11 @@ class PreTrainer(object):
             val_loss_averager = val_loss_averager.item()
             val_acc_averager = val_acc_averager.item()
             val_iou_averager = val_iou_averager.item()
-
+            
+            writer.add_scalar('data/val_loss(Pre)', float(val_loss_averager), epoch)
+            writer.add_scalar('data/val_acc(Pre)', float(val_acc_averager), epoch) 
+            writer.add_scalar('data/val_iou (Pre)', float(val_iou_averager), epoch)  
+            
             # Print loss and accuracy for this epoch
             print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,val_iou_averager))
 
@@ -243,4 +247,4 @@ class PreTrainer(object):
 
             if epoch % 10 == 0:
                 print('Running Time: {}, Estimated Time: {}'.format(timer.measure(), timer.measure(epoch / self.args.max_epoch)))
-                # writer.close()
+        writer.close()
