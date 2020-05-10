@@ -40,7 +40,7 @@ class DatasetLoader(Dataset):
             # print(idx)
             # exit()
         for labimage_path in label_images:
-            p1=osp.join(THE_PATH, labimage_path[:-3]+'jpg'))
+            p1=osp.join(THE_PATH, labimage_path[:-3]+'jpg')
             p2=osp.join(THE_PATHL, labimage_path)
             if osp.exists(p1) and osp.exists(p2):
                 data.append(p1)
