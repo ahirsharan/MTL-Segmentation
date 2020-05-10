@@ -42,7 +42,7 @@ class PreTrainer(object):
 
         # Load pre-val set
         self.valset = mDataset('val', self.args)
-        self.val_sampler = CategoriesSampler(self.valset.labeln, 50, self.args.way, self.args.shot + self.args.val_query,self.args.shot)
+        self.val_sampler = CategoriesSampler(self.valset.labeln,self.args.num_batch , self.args.way, self.args.shot + self.args.val_query,self.args.shot)
         self.val_loader = DataLoader(dataset=self.valset, batch_sampler=self.val_sampler, num_workers=8, pin_memory=True)
 
 
