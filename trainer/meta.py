@@ -194,7 +194,7 @@ class MetaTrainer(object):
             train_iou_averager = train_iou_averager.item()
 
             writer.add_scalar('data/train_loss (Meta)', float(train_loss_averager), epoch)
-            writer.add_scalar('data/train_acc (Meta)', float(train_acc_averager), epoch)  
+            writer.add_scalar('data/train_acc (Meta)', float(train_acc_averager)*100.0, epoch)  
             writer.add_scalar('data/train_iou (Meta)', float(train_iou_averager), epoch)
             
             # Start validation for this epoch, set model to eval mode
@@ -243,11 +243,11 @@ class MetaTrainer(object):
             
             # Write the tensorboardX records
             writer.add_scalar('data/val_loss (Meta)', float(val_loss_averager), epoch)
-            writer.add_scalar('data/val_acc (Meta)', float(val_acc_averager), epoch)  
+            writer.add_scalar('data/val_acc (Meta)', float(val_acc_averager)*100.0, epoch)  
             writer.add_scalar('data/val_iou (Meta)', float(val_iou_averager), epoch)
             
             # Print loss and accuracy for this epoch
-            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,val_iou_averager))
+            print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager*100.0,val_iou_averager))
 
             # Update best saved model
             if val_acc_averager > trlog['max_acc']:
