@@ -24,10 +24,10 @@ if __name__ == '__main__':
     parser.add_argument('--num_batch', type=int, default=50) # The number for different tasks used for meta-train
     parser.add_argument('--num_classes', type=int, default=10)# Total number of pre-labelled classes 
     parser.add_argument('--mnum_classes', type=int, default=2)# Total number of meta-labelled classes 
-    parser.add_argument('--way', type=int, default=5) # Way number, how many classes in a task
+    parser.add_argument('--way', type=int, default=4) # Way number, how many classes in a task
     parser.add_argument('--shot', type=int, default=1) # Shot number, how many samples for one class in a task
-    parser.add_argument('--train_query', type=int, default=3) # The number of meta train samples for each class in a task
-    parser.add_argument('--val_query', type=int, default=3) # The number of meta val samples for each class in a task
+    parser.add_argument('--train_query', type=int, default=1) # The number of meta train samples for each class in a task
+    parser.add_argument('--val_query', type=int, default=1) # The number of meta val samples for each class in a task
     parser.add_argument('--test_query', type=int, default=1) # The number of meta test samples for each class in a task
     parser.add_argument('--meta_lr1', type=float, default=0.0005) # Learning rate for SS weights
     parser.add_argument('--meta_lr2', type=float, default=0.005) # Learning rate for FC weights
