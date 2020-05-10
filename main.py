@@ -21,7 +21,7 @@ if __name__ == '__main__':
     # Parameters for meta-train phase    
     parser.add_argument('--mdataset_dir', type=str, default='../../MTL_Segmentation/Fewshot/') # Dataset folder
     parser.add_argument('--max_epoch', type=int, default=2) # Epoch number for meta-train phase
-    parser.add_argument('--num_batch', type=int, default=50) # The number for different tasks used for meta-train
+    parser.add_argument('--num_batch', type=int, default=200) # The number for different tasks used for meta-train
     parser.add_argument('--num_classes', type=int, default=10)# Total number of pre-labelled classes 
     parser.add_argument('--mnum_classes', type=int, default=2)# Total number of meta-labelled classes 
     parser.add_argument('--way', type=int, default=5) # Way number, how many classes in a task
