@@ -3,10 +3,10 @@
 """ Generate commands for meta-train phase. """
 import os
 
-def run_exp(num_batch=100, shot=1, query=2, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=10, gamma=0.5):
+def run_exp(num_batch=100, shot=1, query=1, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=10, gamma=0.5):
     max_epoch = 2
     step_size = 10
-    way=5
+    way=4
     gpu =1
        
     the_command = 'python3 main.py' \
