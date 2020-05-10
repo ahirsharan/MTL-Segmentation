@@ -12,9 +12,9 @@ class BaseLearner(nn.Module):
         super().__init__()
         self.args = args
         self.vars = nn.ParameterList()
-        self.wt = nn.Parameter(torch.ones([self.args.way,self.args.num_classes,3,3]))
+        self.wt = nn.Parameter(torch.ones([self.args.mnum_classes,self.args.num_classes,3,3]))
         self.vars.append(self.wt)
-        self.bias = nn.Parameter(torch.zeros([self.args.way]))
+        self.bias = nn.Parameter(torch.zeros([self.args.mnum_classes]))
         self.vars.append(self.bias)
         self.norm1 = nn.BatchNorm2d(self.args.num_classes)
         self.norm2 = nn.ReLU(inplace=True)
