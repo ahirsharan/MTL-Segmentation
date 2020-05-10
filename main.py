@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     # Parameters for pretain phase
     parser.add_argument('--pre_max_epoch', type=int, default=2) # Epoch number for pre-train phase
-    parser.add_argument('--pre_batch_size', type=int, default=8) # Batch size for pre-train phase
+    parser.add_argument('--pre_batch_size', type=int, default=4) # Batch size for pre-train phase
     parser.add_argument('--pre_lr', type=float, default=0.1) # Learning rate for pre-train phase
     parser.add_argument('--pre_gamma', type=float, default=0.2) # Gamma for the pre-train learning rate decay
     parser.add_argument('--pre_step_size', type=int, default=30) # The number of epochs to reduce the pre-train learning rate
