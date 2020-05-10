@@ -170,7 +170,7 @@ class PreTrainer(object):
             train_iou_averager = train_iou_averager.item()
 
             writer.add_scalar('data/train_loss(Pre)', float(train_loss_averager), epoch)
-            writer.add_scalar('data/train_acc(Pre)', float(train_acc_averager), epoch) 
+            writer.add_scalar('data/train_acc(Pre)', float(train_acc_averager)*100.0, epoch) 
             writer.add_scalar('data/train_iou (Pre)', float(train_iou_averager), epoch)
             
             print('Epoch {}, Train: Loss={:.4f}, Acc={:.4f}, IoU={:.4f}'.format(epoch, train_loss_averager, train_acc_averager*100.0,train_iou_averager))        
@@ -219,7 +219,7 @@ class PreTrainer(object):
             val_iou_averager = val_iou_averager.item()
             
             writer.add_scalar('data/val_loss(Pre)', float(val_loss_averager), epoch)
-            writer.add_scalar('data/val_acc(Pre)', float(val_acc_averager), epoch) 
+            writer.add_scalar('data/val_acc(Pre)', float(val_acc_averager)*100.0, epoch) 
             writer.add_scalar('data/val_iou (Pre)', float(val_iou_averager), epoch)  
             
             # Print loss and accuracy for this epoch
