@@ -147,7 +147,7 @@ class PreTrainer(object):
                 # Calculate train loss
                 loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate train accuracy
-                seg_metrics = eval_metrics(logits, label, self.num_classes)
+                seg_metrics = eval_metrics(logits, label, self.args.num_classes)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.num_classes).values()
 
