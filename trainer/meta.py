@@ -309,7 +309,7 @@ class MetaTrainer(object):
             data_shot, data_query = data[:p], data[p:]
             label_shot,label=labels[:p],labels[p:]
             logits = self.model((data_shot, label_shot, data_query))
-            seg_metrics = eval_metrics(logits, label, self.args.mnum_classes
+            seg_metrics = eval_metrics(logits, label, self.args.mnum_classes)
             self._update_seg_metrics(*seg_metrics)
             pixAcc, mIoU, _ = self._get_seg_metrics(self.args.mnum_classes).values()
             
