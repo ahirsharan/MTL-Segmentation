@@ -8,7 +8,7 @@ def make_one_hot(labels, classes):
     one_hot = torch.FloatTensor(labels.size()[0], classes, labels.size()[2], labels.size()[3]).zero_()
     target = one_hot.scatter_(1, labels.data, 1)
     if(torch.cuda.is_available()):
-        one_hot=one_hot.cuda
+        target=target.cuda
     return target
 
 def get_weights(target):
