@@ -24,7 +24,8 @@ class CategoriesSampler():
     def __iter__(self):
         for i_batch in range(self.n_batch):
             classes = torch.randperm(len(self.m_ind))[:self.n_cls]
-            lr=[],dr=[]
+            lr=[]
+            dr=[]
             for c in classes:
                 l = self.m_ind[c]
                 pos = torch.randperm(len(l))[:self.n_per]
