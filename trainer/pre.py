@@ -223,7 +223,7 @@ class PreTrainer(object):
             writer.add_scalar('data/val_iou (Pre)', float(val_iou_averager), epoch)  
             
             # Print loss and accuracy for this epoch
-            print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager,val_iou_averager))
+            print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager*100.0,val_iou_averager))
 
             # Update best saved model
             if val_acc_averager > trlog['max_acc']:
