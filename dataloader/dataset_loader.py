@@ -39,7 +39,8 @@ class DatasetLoader(Dataset):
             #this_folder_images = os.listdir(this_folder)
             # print(idx)
             # exit()
-        label_images=label_images[:1000]
+        #label_images=label_images[:1000]
+        
         for labimage_path in label_images:
             p1=osp.join(THE_PATH, labimage_path[:-3]+'jpg')
             p2=osp.join(THE_PATHL, labimage_path)
