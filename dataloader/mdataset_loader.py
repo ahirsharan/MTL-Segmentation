@@ -95,6 +95,6 @@ class mDatasetLoader(Dataset):
         inppath, labpath,idx = self.data[i], self.label[i],self.labeln[i]
         inpimage = self.transform(Image.open(inppath).convert('RGB'))
         labimage = self.btransform(Image.open(labpath).convert('LA'))
-        labimage=(self.args.mnum_classes-1)*labimage
+        labimage=(self.args.way-1)*labimage
         labimage=labimage.long()
         return inpimage,labimage[0],idx
