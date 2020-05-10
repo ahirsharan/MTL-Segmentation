@@ -6,9 +6,9 @@ import os
 def run_exp(lr=0.1, gamma=0.2, step_size=20):
     max_epoch = 2
     num_classes=10
-    query = 2
+    query = 1
     gpu = 1
-    way=5
+    way=4
     shot =1
     base_lr = 0.05
     
