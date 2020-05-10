@@ -15,7 +15,7 @@ class mDatasetLoader(Dataset):
         self.args=args
         if setname=='meta':
             THE_PATH = osp.join(args.mdataset_dir, 'train/images')
-            THE_PATHL = osp.join(args.mdataset_dir, 'train/labels')
+            THE_PATHL = osp.join(args.mdataset_dir, 'train/labels/')
         elif setname=='val':
             THE_PATH = osp.join(args.mdataset_dir, 'val/images/')
             THE_PATHL = osp.join(args.mdataset_dir, 'val/labels/')
