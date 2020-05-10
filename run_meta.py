@@ -5,9 +5,9 @@ import os
 
 def run_exp(num_batch=100, shot=1, query=1, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=10, gamma=0.5):
     max_epoch = 2
-    step_size = 10
+    step_size = 20
     way=2
-    gpu =1
+    gpu=1
        
     the_command = 'python3 main.py' \
         + ' --max_epoch=' + str(max_epoch) \
@@ -25,5 +25,5 @@ def run_exp(num_batch=100, shot=1, query=1, lr1=0.0005, lr2=0.005, base_lr=0.01,
     os.system(the_command + ' --phase=meta_train')
     os.system(the_command + ' --phase=meta_eval')
 
-run_exp(num_batch=50, shot=1, query=2, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=10, gamma=0.5)
+run_exp(num_batch=50, shot=1, query=2, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=20, gamma=0.5)
 #run_exp(num_batch=100, shot=5, query=15, lr1=0.0001, lr2=0.001, base_lr=0.01, update_step=100, gamma=0.5)
