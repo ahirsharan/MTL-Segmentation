@@ -38,12 +38,12 @@ class PreTrainer(object):
 
         # Load pretrain set
         self.trainset = Dataset('train', self.args)
-        self.train_loader = DataLoader(dataset=self.trainset, batch_size=args.pre_batch_size, shuffle=True, num_workers=8, pin_memory=True)
+        self.train_loader = DataLoader(dataset=self.trainset, batch_size=args.pre_batch_size, shuffle=True, num_workers=4, pin_memory=True)
 
         # Load pre-val set
         self.valset = mDataset('val', self.args)
         self.val_sampler = CategoriesSampler(self.valset.labeln, 50, self.args.way, self.args.shot + self.args.val_query,self.args.shot)
-        self.val_loader = DataLoader(dataset=self.valset, batch_sampler=self.val_sampler, num_workers=8, pin_memory=True)
+        self.val_loader = DataLoader(dataset=self.valset, batch_sampler=self.val_sampler, num_workers=4, pin_memory=True)
 
 
         # Build pretrain model
