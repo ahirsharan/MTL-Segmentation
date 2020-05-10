@@ -18,7 +18,7 @@ from dataloader.mdataset_loader import mDatasetLoader as mDataset
 
 # torch.cuda.set_device(1)
 class PreTrainer(object):
-"""The class that contains the code for the pretrain phase."""
+
     def __init__(self, args):
         # Set the folder to save the records and checkpoints
         log_base_dir = './logs/'
