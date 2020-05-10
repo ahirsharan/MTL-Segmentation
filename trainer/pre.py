@@ -205,9 +205,9 @@ class PreTrainer(object):
                 # Calculate preval loss
                 loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate val accuracy
-                seg_metrics = eval_metrics(logits, label, self.args.way)
+                seg_metrics = eval_metrics(logits, label, self.args.mnum_classes)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.mnum_classes).values()
 
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
