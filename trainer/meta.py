@@ -171,9 +171,9 @@ class MetaTrainer(object):
                 # Calculate meta-train loss
                 loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 # Calculate meta-train accuracy
-                seg_metrics = eval_metrics(logits, label, self.args.mnum_classes)
+                seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.mnum_classes).values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
                 
                 # Print loss and accuracy for this step
                 tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, loss.item(), pixAcc*100.0,mIoU))
@@ -228,9 +228,9 @@ class MetaTrainer(object):
                 loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 
                 # Calculate meta-val accuracy
-                seg_metrics = eval_metrics(logits, label, self.args.mnum_classes)
+                seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
-                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.mnum_classes).values()
+                pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
 
                 val_loss_averager.add(loss.item())
                 val_acc_averager.add(pixAcc)
@@ -309,9 +309,9 @@ class MetaTrainer(object):
             data_shot, data_query = data[:p], data[p:]
             label_shot,label=labels[:p],labels[p:]
             logits = self.model((data_shot, label_shot, data_query))
-            seg_metrics = eval_metrics(logits, label, self.args.mnum_classes)
+            seg_metrics = eval_metrics(logits, label, self.args.way)
             self._update_seg_metrics(*seg_metrics)
-            pixAcc, mIoU, _ = self._get_seg_metrics(self.args.mnum_classes).values()
+            pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
             
             ave_acc.add(pixAcc)
             #test_acc_record[i-1] = acc
@@ -326,8 +326,8 @@ class MetaTrainer(object):
                 z1 = logits[j].detach().cpu()
                 
                 x = transforms.ToPILImage()(x1).convert("RGB")
-                y = transforms.ToPILImage()(y1 /(1.0*(self.args.mnum_classes-1))).convert("LA")
-                im =  torch.tensor(np.argmax(np.array(z1),axis=0)/(1.0*(self.args.mnum_classes-1))) 
+                y = transforms.ToPILImage()(y1 /(1.0*(self.args.way-1))).convert("LA")
+                im =  torch.tensor(np.argmax(np.array(z1),axis=0)/(1.0*(self.args.way-1))) 
                 im =  im.type(torch.FloatTensor)
                 z =  transforms.ToPILImage()(im).convert("LA")
                 
