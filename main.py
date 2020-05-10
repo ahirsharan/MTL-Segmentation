@@ -22,7 +22,8 @@ if __name__ == '__main__':
     parser.add_argument('--mdataset_dir', type=str, default='./Fewshot/') # Dataset folder
     parser.add_argument('--max_epoch', type=int, default=100) # Epoch number for meta-train phase
     parser.add_argument('--num_batch', type=int, default=50) # The number for different tasks used for meta-train
-    parser.add_argument('--num_classes', type=int, default=172)# Total number of classes  
+    parser.add_argument('--num_classes', type=int, default=10)# Total number of pre-labelled classes 
+    parser.add_argument('--num_classes', type=int, default=2)# Total number of meta-labelled classes 
     parser.add_argument('--way', type=int, default=5) # Way number, how many classes in a task
     parser.add_argument('--shot', type=int, default=1) # Shot number, how many samples for one class in a task
     parser.add_argument('--train_query', type=int, default=3) # The number of meta train samples for each class in a task
