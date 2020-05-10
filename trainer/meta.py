@@ -206,7 +206,7 @@ class MetaTrainer(object):
             val_iou_averager = Averager()
                 
             # Print previous information
-            if epoch % 10 == 0:
+            if epoch % 1 == 0:
                 print('Best Epoch {}, Best Val Acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
                 
             # Run meta
@@ -255,7 +255,7 @@ class MetaTrainer(object):
                 trlog['max_acc_epoch'] = epoch
                 self.save_model('max_acc')
             # Save model every 10 epochs
-            if epoch % 10 == 0:
+            if epoch % 1 == 0:
                 self.save_model('epoch'+str(epoch))
 
             # Update the logs
@@ -267,7 +267,7 @@ class MetaTrainer(object):
             # Save log
             torch.save(trlog, osp.join(self.args.save_path, 'trlog'))
 
-            if epoch % 10 == 0:
+            if epoch % 1 == 0:
                 print('Running Time: {}, Estimated Time: {}'.format(timer.measure(), timer.measure(epoch / self.args.max_epoch)))
 
         writer.close()
