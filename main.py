@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     # Parameters for meta-train phase    
     parser.add_argument('--mdataset_dir', type=str, default='../../Datasets/Fewshot/') # Dataset folder
-    parser.add_argument('--max_epoch', type=int, default=2) # Epoch number for meta-train phase
+    parser.add_argument('--max_epoch', type=int, default=100) # Epoch number for meta-train phase
     parser.add_argument('--num_batch', type=int, default=100) # The number for different tasks used for meta-train
     parser.add_argument('--num_classes', type=int, default=10)# Total number of pre-labelled classes 
     parser.add_argument('--way', type=int, default=2) # Way number, how many classes in a task
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     parser.add_argument('--meta_label', type=str, default='exp1') # Additional label for meta-train
 
     # Parameters for pretain phase
-    parser.add_argument('--pre_max_epoch', type=int, default=2) # Epoch number for pre-train phase
+    parser.add_argument('--pre_max_epoch', type=int, default=100) # Epoch number for pre-train phase
     parser.add_argument('--pre_batch_size', type=int, default=4) # Batch size for pre-train phase
     parser.add_argument('--pre_lr', type=float, default=0.1) # Learning rate for pre-train phase
     parser.add_argument('--pre_gamma', type=float, default=0.2) # Gamma for the pre-train learning rate decay
