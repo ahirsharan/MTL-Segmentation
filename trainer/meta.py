@@ -169,7 +169,8 @@ class MetaTrainer(object):
                 par=data_shot, label_shot, data_query
                 logits = self.model(par)
                 # Calculate meta-train loss
-                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
+                #loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
+                loss = self.CD(logits,label)
                 # Calculate meta-train accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
@@ -225,7 +226,8 @@ class MetaTrainer(object):
                 logits = self.model(par)
                 
                 # Calculate meta val loss
-                loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
+                #loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
+                loss = self.CD(logits,label)
                 
                 # Calculate meta-val accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
