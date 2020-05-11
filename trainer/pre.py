@@ -233,7 +233,7 @@ class PreTrainer(object):
                 self.save_model('max_acc')
 
             # Save model every 10 epochs
-            if epoch % 1 == 0:
+            if epoch % 10 == 0:
                 self.save_model('epoch'+str(epoch))
 
             # Update the logs
