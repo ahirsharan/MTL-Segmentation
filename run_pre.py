@@ -3,7 +3,7 @@
 """ Generate commands for pre-train phase. """
 import os
 
-def run_exp(lr=0.1, gamma=0.2, step_size=20):
+def run_exp(lr=0.2, gamma=0.2, step_size=20):
     max_epoch = 200
     num_classes=10
     query = 1
@@ -29,4 +29,4 @@ def run_exp(lr=0.1, gamma=0.2, step_size=20):
 
     os.system(the_command)
 
-run_exp(lr=0.1, gamma=0.2, step_size=20)
+run_exp(lr=0.2, gamma=0.2, step_size=20)
