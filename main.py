@@ -53,8 +53,8 @@ if __name__ == '__main__':
     pprint(vars(args))
 
     # Set the GPU id
-    #set_gpu(args.gpu)
-    torch.cuda.set_device(0)
+    set_gpu(args.gpu)
+    #torch.cuda.set_device(0)
 
     # Set manual seed for PyTorch
     if args.seed==0:
