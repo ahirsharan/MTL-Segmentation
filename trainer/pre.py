@@ -21,7 +21,7 @@ class PreTrainer(object):
 
     def __init__(self, args):
         # Set the folder to save the records and checkpoints
-        log_base_dir = './logs/'
+        log_base_dir = '../logs/'
         if not osp.exists(log_base_dir):
             os.mkdir(log_base_dir)
         pre_base_dir = osp.join(log_base_dir, 'pre')
