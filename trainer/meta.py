@@ -140,7 +140,7 @@ class MetaTrainer(object):
         writer = SummaryWriter(comment=self.args.save_path)
                 
         # Start meta-train
-        for epoch in range(21, self.args.max_epoch + 1):
+        for epoch in range(1, self.args.max_epoch + 1):
             # Update learning rate
             self.lr_scheduler.step()
             # Set the model to train mode
