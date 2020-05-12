@@ -53,6 +53,13 @@ class PreTrainer(object):
         self.model_dict = self.model.state_dict()
         if self.args.pre_init_weights is not None:
             pretrained_dict = torch.load(self.args.pre_init_weights)['params']
+            
+        pretrained_dict = {'encoder.'+k: v for k, v in pretrained_dict.items()}
+        pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in self.model_dict}
+        
+        print(pretrained_dict.keys())
+        self.model_dict.update(pretrained_dict)
+        self.model.load_state_dict(self.model_dict)   
         
         self.FL=FocalLoss()
         self.CD=CE_DiceLoss()
