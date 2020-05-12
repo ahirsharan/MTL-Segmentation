@@ -16,7 +16,7 @@ from utils.misc import Averager, Timer, ensure_path
 from dataloader.dataset_loader import DatasetLoader as Dataset
 from dataloader.mdataset_loader import mDatasetLoader as mDataset
 
-# torch.cuda.set_device(1)
+torch.cuda.set_device(1)
 class PreTrainer(object):
 
     def __init__(self, args):
