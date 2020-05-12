@@ -52,7 +52,7 @@ git clone https://github.com/ahirsharan/MTL_Segmentation.git
 - **Few-Shot:** For Few Shot, there are 1000 object classes folder each with 10 images with ground truth mask for segmentation. This dataset can be used for few shot learning and can be downloaded [here](https://drive.google.com/file/d/16TgqOeI_0P41Eh3jWQlxlRXG9KIqtMgI/view).
 
 ### Losses
-In addition to the Cross-Entorpy loss, there is also:
+In addition to the Cross-Entropy loss, there is also:
 
 - **Dice-Loss**, which measures of overlap between two samples and can be more reflective of the training objective (maximizing the mIoU), but is highly non-convexe and can be hard to optimize.
 - **CE Dice loss**, the sum of the Dice loss and CE, CE gives smooth optimization while Dice loss is a good indicator of the quality of the segmentation results.
