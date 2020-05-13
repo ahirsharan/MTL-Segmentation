@@ -129,6 +129,7 @@ Hyperparameters and options in `main.py`.
 - `step_size` The number of epochs to reduce the meta learning rates
 - `gamma` Gamma for the meta-train learning rate decay
 - `init_weights` The pretained weights for meta-train phase
+- `pre_init_weights` The pretained weights for pre-train phase
 - `eval_weights` The meta-trained weights for meta-eval phase
 - `meta_label` Additional label for meta-train
 - `pre_max_epoch` Epoch number for pre-train pahse
