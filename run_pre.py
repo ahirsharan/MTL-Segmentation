@@ -9,7 +9,7 @@ def run_exp(lr=0.1, gamma=0.2, step_size=20):
     query = 1
     gpu = 1
     way=2
-    shot =1
+    shot =3
     teshot=1
     base_lr = 0.05
     #pre_init_weights='./logs/pre/COCO_UNet_batchsize6_lr0.1_gamma0.2_step20_maxepoch200/epoch20.pth'
