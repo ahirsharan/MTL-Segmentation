@@ -119,6 +119,7 @@ Hyperparameters and options in `main.py`.
 - `max_epoch` Epoch number for meta-train phase
 - `num_batch` The number for different tasks used for meta-train
 - `shot` Shot number, how many samples for one class in a task
+- `teshot` Test-Shot number, how many samples for one class in a meta test task
 - `way` Way number, how many classes in a task
 - `train_query` The number of training samples for each class in a task 
 - `val_query` The number of test samples for each class in a task
