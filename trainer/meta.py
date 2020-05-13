@@ -75,7 +75,7 @@ class MetaTrainer(object):
             pre_save_path2 = 'batchsize' + str(args.pre_batch_size) + '_lr' + str(args.pre_lr) + '_gamma' + str(args.pre_gamma) + '_step' + \
                 str(args.pre_step_size) + '_maxepoch' + str(args.pre_max_epoch)
             pre_save_path = pre_base_dir + '/' + pre_save_path1 + '_' + pre_save_path2
-            pretrained_dict = torch.load(osp.join(pre_save_path, 'epoch130.pth'))['params']
+            pretrained_dict = torch.load(osp.join(pre_save_path, 'max_iou.pth'))['params']
         pretrained_dict = {'encoder.'+k: v for k, v in pretrained_dict.items()}
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in self.model_dict}
         
@@ -129,8 +129,10 @@ class MetaTrainer(object):
         trlog['val_loss'] = []
         trlog['train_acc'] = []
         trlog['val_acc'] = []
-        trlog['max_acc'] = 0.0
-        trlog['max_acc_epoch'] = 0
+        trlog['train_iou'] = []
+        trlog['val_iou'] = []
+        trlog['max_iou'] = 0.0
+        trlog['max_iou_epoch'] = 0
 
         # Set the timer
         timer = Timer()
@@ -208,7 +210,7 @@ class MetaTrainer(object):
                 
             # Print previous information
             if epoch % 1 == 0:
-                print('Best Epoch {}, Best Val Acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
+                print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']))
                 
             # Run meta
             self._reset_metrics()
@@ -252,10 +254,10 @@ class MetaTrainer(object):
             print('Epoch {}, Val, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager*100.0,val_iou_averager))
 
             # Update best saved model
-            if val_acc_averager > trlog['max_acc']:
-                trlog['max_acc'] = val_acc_averager
-                trlog['max_acc_epoch'] = epoch
-                self.save_model('max_acc')
+            if val_iou_averager > trlog['max_iou']:
+                trlog['max_iou'] = val_iou_averager
+                trlog['max_iou_epoch'] = epoch
+                self.save_model('max_iou')
             # Save model every 10 epochs
             if epoch % 10 == 0:
                 self.save_model('epoch'+str(epoch))
@@ -265,7 +267,9 @@ class MetaTrainer(object):
             trlog['train_acc'].append(train_acc_averager)
             trlog['val_loss'].append(val_loss_averager)
             trlog['val_acc'].append(val_acc_averager)
-
+            trlog['train_iou'].append(train_iou_averager)
+            trlog['val_iou'].append(val_iou_averager)
+            
             # Save log
             torch.save(trlog, osp.join(self.args.save_path, 'trlog'))
 
