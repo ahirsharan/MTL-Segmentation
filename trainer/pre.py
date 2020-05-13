@@ -118,8 +118,10 @@ class PreTrainer(object):
         trlog['val_loss'] = []
         trlog['train_acc'] = []
         trlog['val_acc'] = []
-        trlog['max_acc'] = 0.0
-        trlog['max_acc_epoch'] = 0
+        trlog['train_iou']=[]
+        trlog['val_iou']=[]
+        trlog['max_iou'] = 0.0
+        trlog['max_iou_epoch'] = 0
 
         # Set the timer
         timer = Timer()
@@ -198,7 +200,7 @@ class PreTrainer(object):
 
             # Print previous information  
             if epoch % 1 == 0:
-                print('Best Epoch {}, Best Val acc={:.4f}'.format(trlog['max_acc_epoch'], trlog['max_acc']*100.0))
+                print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']*100.0))
 
             # Run meta-validation
             self._reset_metrics()
@@ -239,11 +241,11 @@ class PreTrainer(object):
             print('Epoch {}, Val: Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, val_loss_averager, val_acc_averager*100.0,val_iou_averager))
 
             # Update best saved model
-            if val_acc_averager > trlog['max_acc']:
-                trlog['max_acc'] = val_acc_averager
-                trlog['max_acc_epoch'] = epoch
-                print("model saved in max_acc")
-                self.save_model('max_acc')
+            if val_iou_averager > trlog['max_iou']:
+                trlog['max_iou'] = val_iou_averager
+                trlog['max_iou_epoch'] = epoch
+                print("model saved in max_iou")
+                self.save_model('max_iou')
 
             # Save model every 10 epochs
             if epoch % 10 == 0:
@@ -254,6 +256,8 @@ class PreTrainer(object):
             trlog['train_acc'].append(train_acc_averager)
             trlog['val_loss'].append(val_loss_averager)
             trlog['val_acc'].append(val_acc_averager)
+            trlog['train_iou'].append(train_iou_averager)
+            trlog['val_iou'].append(val_iou_averager)
 
             # Save log
             torch.save(trlog, osp.join(self.args.save_path, 'trlog'))
