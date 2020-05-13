@@ -200,7 +200,7 @@ class PreTrainer(object):
 
             # Print previous information  
             if epoch % 1 == 0:
-                print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']*100.0))
+                print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']))
 
             # Run meta-validation
             self._reset_metrics()
