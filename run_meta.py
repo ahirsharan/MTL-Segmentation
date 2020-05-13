@@ -7,7 +7,7 @@ def run_exp(num_batch=100, shot=1, query=1, lr1=0.0005, lr2=0.005, base_lr=0.01,
     max_epoch = 200
     step_size = 20
     way=2
-    gpu=1
+    gpu=0
        
     the_command = 'python3 main.py' \
         + ' --max_epoch=' + str(max_epoch) \
