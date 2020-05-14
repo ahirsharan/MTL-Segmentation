@@ -4,7 +4,7 @@
 import os
 
 def run_exp(num_batch=50, shot=3, teshot=1, query=1, lr1=0.0005, lr2=0.005, base_lr=0.01, update_step=10, gamma=0.5):
-    max_epoch = 200
+    max_epoch = 1
     step_size = 20
     way=2
     gpu=1
