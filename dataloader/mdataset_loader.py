@@ -39,15 +39,13 @@ class mDatasetLoader(Dataset):
             
             imf=osp.join(THE_PATH,this_folder)
             imf=imf+'/'
+            lbf=osp.join(THE_PATHL,this_folder)
+            lbf=lbf+'/'
+            
             this_folder_images = os.listdir(imf)
             for im in this_folder_images:
                 data.append(osp.join(imf, im))
-            
-            lbf=osp.join(THE_PATHL,this_folder)
-            lbf=lbf+'/'
-            this_folder_images = os.listdir(lbf)
-            for lb in this_folder_images:
-                label.append(osp.join(lbf, lb))    
+                label.append(osp.join(lbf, im))    
                 labeln.append(idx)
             
         # Set data, label and class number to be accessable from outside
