@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # Basic parameters
     parser.add_argument('--model_type', type=str, default='UNet', choices=['UNet']) # The network architecture
     parser.add_argument('--dataset', type=str, default='COCO', choices=['COCO','Fewshot']) # Dataset
-    parser.add_argument('--phase', type=str, default='pre_train', choices=['pre_train', 'meta_train', 'meta_eval']) # Phase
+    parser.add_argument('--phase', type=str, default='meta_eval', choices=['pre_train', 'meta_train', 'meta_eval']) # Phase
     parser.add_argument('--seed', type=int, default=0) # Manual seed for PyTorch, "0" means using random seed
     parser.add_argument('--gpu', default='1') # GPU id
     parser.add_argument('--dataset_dir', type=str, default='../Datasets/COCO/') # Dataset folder
