@@ -295,7 +295,7 @@ class MetaTrainer(object):
         if self.args.eval_weights is not None:
             self.model.load_state_dict(torch.load(self.args.eval_weights)['params'])
         else:
-            self.model.load_state_dict(torch.load(osp.join(self.args.save_path, 'max_acc' + '.pth'))['params'])
+            self.model.load_state_dict(torch.load(osp.join(self.args.save_path, 'max_iou' + '.pth'))['params'])
         # Set model to eval mode
         self.model.eval()
 
