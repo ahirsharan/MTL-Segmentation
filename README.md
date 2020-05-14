@@ -133,8 +133,8 @@ Hyperparameters and options in `main.py`.
 - `pre_init_weights` The pretained weights for pre-train phase
 - `eval_weights` The meta-trained weights for meta-eval phase
 - `meta_label` Additional label for meta-train
-- `pre_max_epoch` Epoch number for pre-train pahse
-- `pre_batch_size` Batch size for pre-train pahse
+- `pre_max_epoch` Epoch number for pre-train psase
+- `pre_batch_size` Batch size for pre-train phase
 - `pre_lr` Learning rate for pre-train pahse
 - `pre_gamma` Gamma for the preteain learning rate decay
 - `pre_step_size` The number of epochs to reduce the pre-train learning rate
