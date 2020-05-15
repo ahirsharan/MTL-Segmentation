@@ -3,6 +3,8 @@
 import torch
 import numpy as np
 
+# Customize such as total way number of distint classes to segment in a meta task
+
 class CategoriesSampler():
     """The class to generate episodic data"""
     def __init__(self, labeln, n_batch, n_cls, n_per,n_shot):
