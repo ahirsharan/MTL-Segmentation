@@ -5,7 +5,7 @@ import os
 
 def run_exp(lr=0.1, gamma=0.2, step_size=20):
     max_epoch = 200
-    num_classes=10
+    num_classes=5
     query = 1
     gpu = 1
     way=2
