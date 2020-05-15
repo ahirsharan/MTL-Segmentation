@@ -49,7 +49,7 @@ git clone https://github.com/ahirsharan/MTL_Segmentation.git
 
 - **COCO Stuff:** For COCO, there is two partitions, CocoStuff10k with only 10k that are used for training the evaluation, note that this dataset is outdated, can be used for small scale testing and training, and can be downloaded [here](https://github.com/nightrome/cocostuff10k). For the official dataset with all of the training 164k examples, it can be downloaded from the official [website](http://cocodataset.org/#download).
 
-- **Few-Shot:** For Few Shot, there are 1000 object classes folder each with 10 images with ground truth mask for segmentation. This dataset can be used for few shot learning and can be downloaded [here](https://drive.google.com/file/d/16TgqOeI_0P41Eh3jWQlxlRXG9KIqtMgI/view).
+- **Few-Shot:** For Few Shot, there are 1000 object classes folder each with 10 images with ground truth mask for segmentation. This dataset can be used for few shot learning and can be downloaded [here](https://drive.google.com/open?id=1oG5aOw4H4IyrbrBb0eWMCBOdDLRf9P1Y).
 
 ### Losses
 In addition to the Cross-Entropy loss, there is also:
