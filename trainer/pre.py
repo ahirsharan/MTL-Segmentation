@@ -158,8 +158,10 @@ class PreTrainer(object):
                 # Output logits for model
                 logits = self.model(data)
                 # Calculate train loss
+                # CD loss is modified in the whole project to incorporate ony Cross Entropy loss. Modify as per requirement.
                 #loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 loss = self.CD(logits,label) 
+                
                 # Calculate train accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.num_classes)
                 self._update_seg_metrics(*seg_metrics)
@@ -217,8 +219,10 @@ class PreTrainer(object):
                 par=data_shot, label_shot, data_query
                 logits = self.model(par)
                 # Calculate preval loss
+                
                 #loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 loss = self.CD(logits,label)                 
+                
                 # Calculate val accuracy
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
