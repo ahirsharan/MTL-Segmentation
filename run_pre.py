@@ -12,7 +12,7 @@ def run_exp(lr=0.1, gamma=0.2, step_size=20):
     shot =3
     teshot=1
     base_lr = 0.05
-    pre_init_weights='../logs/pre/COCO_UNet_batchsize8_lr0.1_gamma0.2_step20_maxepoch200/epoch110.pth'
+    #pre_init_weights='../logs/pre/COCO_UNet_batchsize8_lr0.1_gamma0.2_step20_maxepoch200/epoch110.pth'
     
     the_command = 'python3 main.py' \
         + ' --pre_max_epoch=' + str(max_epoch) \
@@ -26,8 +26,8 @@ def run_exp(lr=0.1, gamma=0.2, step_size=20):
         + ' --base_lr=' + str(base_lr) \
         + ' --pre_lr=' + str(lr) \
         + ' --phase=pre_train' \
-        + ' --way=' + str(way) \
-        + ' --pre_init_weights=' + pre_init_weights
+        + ' --way=' + str(way) 
+        #+ ' --pre_init_weights=' + pre_init_weights
 
     os.system(the_command)
 
