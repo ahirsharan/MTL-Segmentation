@@ -50,6 +50,7 @@ class PreTrainer(object):
         self.model = MtlLearner(self.args, mode='train')
         print(self.model)
         
+        '''
         if self.args.pre_init_weights is not None:
             self.model_dict = self.model.state_dict()
             pretrained_dict = torch.load(self.args.pre_init_weights)['params']
@@ -58,6 +59,7 @@ class PreTrainer(object):
             print(pretrained_dict.keys())
             self.model_dict.update(pretrained_dict)
             self.model.load_state_dict(self.model_dict)   
+        '''
         
         self.FL=FocalLoss()
         self.CD=CE_DiceLoss()
@@ -130,7 +132,7 @@ class PreTrainer(object):
         writer = SummaryWriter(comment=self.args.save_path)
 
         # Start pretrain
-        for epoch in range(111, self.args.pre_max_epoch + 1):
+        for epoch in range(1, self.args.pre_max_epoch + 1):
             # Update learning rate
             self.lr_scheduler.step()
             # Set the model to train mode
