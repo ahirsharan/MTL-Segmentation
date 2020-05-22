@@ -26,8 +26,8 @@ def run_exp(lr=0.1, gamma=0.2, step_size=20):
         + ' --base_lr=' + str(base_lr) \
         + ' --pre_lr=' + str(lr) \
         + ' --phase=pre_train' \
-        + ' --way=' + str(way) 
-        + ' --pre_init_weights='+pre_init_weights
+        + ' --way=' + str(way) \
+        + ' --pre_init_weights=' + pre_init_weights
 
     os.system(the_command)
 
