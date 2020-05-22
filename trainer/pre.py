@@ -50,7 +50,6 @@ class PreTrainer(object):
         self.model = MtlLearner(self.args, mode='train')
         print(self.model)
         
-        '''
         if self.args.pre_init_weights is not None:
             self.model_dict = self.model.state_dict()
             pretrained_dict = torch.load(self.args.pre_init_weights)['params']
@@ -59,7 +58,7 @@ class PreTrainer(object):
             print(pretrained_dict.keys())
             self.model_dict.update(pretrained_dict)
             self.model.load_state_dict(self.model_dict)   
-        '''
+        
         self.FL=FocalLoss()
         self.CD=CE_DiceLoss()
         self.LS=LovaszSoftmax()
