@@ -144,24 +144,24 @@ Hyperparameters and options in `main.py`.
 ## Training
 ### Pre-Train Phase
 - Mean IoU
-![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png)
+  ![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png)
 
 - CE Loss
-![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
+  ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
 
 ### Meta-Train Phase
 - Mean IoU
-![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png)
+  ![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png)
 
 - CE Loss
-![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png)
+  ![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png)
 
 ### Meta-Val Phase
 - Mean IoU
-![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png)
+  ![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png)
 
 - CE Loss
-![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
+  ![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
 
 ## Acknowledgement
 - [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation)
