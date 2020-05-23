@@ -172,11 +172,11 @@ Hyperparameters and options in `main.py`.
 ## Results
 - Some of the best results :wink:
 
-|![text alt](https://i.ibb.co/p2MZXgB/10.jpg)|
+| ![text alt](https://i.ibb.co/p2MZXgB/10.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/dW4Z6K3/9.jpg)|
+| ![text alt](https://i.ibb.co/dW4Z6K3/9.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/ssL1gM6/8.jpg)|
+| ![text alt](https://i.ibb.co/ssL1gM6/8.jpg) |
 |:--:| 
 |![text alt](https://i.ibb.co/xH58Hdb/7.jpg)|
 |:--:| 
