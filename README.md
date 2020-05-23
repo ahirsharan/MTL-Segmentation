@@ -13,6 +13,7 @@
   - [Code structure](#code-structure)
   - [Running Experiments](#Running-Experiments)
   - [Hyperparameters and Options](#Hyperparameters-and-Options)
+  - [Training](#Training)
   - [Acknowledgement](#acknowledgement)
 
 <!-- /TOC -->
@@ -139,6 +140,28 @@ Hyperparameters and options in `main.py`.
 - `pre_gamma` Gamma for the preteain learning rate decay
 - `pre_step_size` The number of epochs to reduce the pre-train learning rate
 - `pre_custom_weight_decay` Weight decay for the optimizer during pre-train
+
+## Training
+### Pre-Train Phase
+Mean IoU
+![text alt](https://i.ibb.co/3SGcf6G/Pre-Train-Io-U.png)
+
+CE Loss
+![text alt](https://i.ibb.co/cXzp0zz/Pre-Train-Loss.png)
+
+### Meta-Train Phase
+Mean IoU
+![text alt](https://i.ibb.co/qYY4mPx/Meta-Train-Io-U.png)
+
+CE Loss
+![text alt](https://i.ibb.co/gvv88p2/Meta-Train-Loss.png)
+
+### Meta-Val Phase
+Mean IoU
+![text alt](https://i.ibb.co/0DQqbhf/Meta-Val-Io-U.png)
+
+CE Loss
+![text alt](https://i.ibb.co/ySHvZ87/Meta-Val-Loss.png)
 
 ## Acknowledgement
 - [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation)
