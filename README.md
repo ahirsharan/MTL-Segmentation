@@ -151,14 +151,6 @@ Mean IoU             |  CE Loss
 :-------------------------:|:-------------------------:
 !![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png) |  ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
 
-| ![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png) | 
-|:--:| 
-| *Mean IoU* |
-
-| ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png) |
-|:--:| 
-| *CE Loss* |
-
 ### Meta-Train Phase
 | ![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png) |
 |:--:| 
