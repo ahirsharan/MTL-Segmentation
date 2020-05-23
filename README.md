@@ -178,19 +178,19 @@ Hyperparameters and options in `main.py`.
 |:--:| 
 | ![text alt](https://i.ibb.co/ssL1gM6/8.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/xH58Hdb/7.jpg)|
+| ![text alt](https://i.ibb.co/xH58Hdb/7.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/mGkZwQy/6.jpg)|
+| ![text alt](https://i.ibb.co/mGkZwQy/6.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/BL7SYh2/5.jpg)|
+| ![text alt](https://i.ibb.co/BL7SYh2/5.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/XxKpQyD/4.jpg)|
+| ![text alt](https://i.ibb.co/XxKpQyD/4.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/S7JYmQy/3.jpg)|
+| ![text alt](https://i.ibb.co/S7JYmQy/3.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/t8S7M0D/2.jpg)|
+| ![text alt](https://i.ibb.co/t8S7M0D/2.jpg) |
 |:--:| 
-|![text alt](https://i.ibb.co/NWqy60t/1.jpg)|
+| ![text alt](https://i.ibb.co/NWqy60t/1.jpg) |
 |:--:| 
 
 ## Acknowledgement
