@@ -149,25 +149,19 @@ Hyperparameters and options in `main.py`.
 
 Mean IoU             |  CE Loss
 :-------------------------:|:-------------------------:
-!![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png) |  ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
+![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png) |  ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
 
 ### Meta-Train Phase
-| ![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png) |
-|:--:| 
-| *Mean IoU* |
 
-| ![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png) |
-|:--:| 
-| *CE Loss* |
+Mean IoU             |  CE Loss
+:-------------------------:|:-------------------------:
+![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png) |  ![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png)
 
 ### Meta-Val Phase
-| ![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png) |
-|:--:| 
-| *Mean IoU* |
 
-| ![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png) |
-|:--:| 
-| *CE Loss* |
+Mean IoU             |  CE Loss
+:-------------------------:|:-------------------------:
+![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png) |  ![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
 
 ## Results
 - The Pre-trained weights for both Pre-Train and Meta Tasks can be found [here](https://drive.google.com/open?id=1WOPH5cHo0dbHgHTFW8KYxt4jMUYwH7MK) pertaining to Max-IoU. 
