@@ -147,22 +147,27 @@ Hyperparameters and options in `main.py`.
 |:--:| 
 | *Mean IoU* |
 
-- CE Loss
-  - ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png)
+| ![text alt](https://i.ibb.co/yBLMtLL/Pre-Train-Loss.png) |
+|:--:| 
+| *CE Loss* |
 
 ### Meta-Train Phase
-- Mean IoU
-  - ![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png)
+| ![text alt](https://i.ibb.co/JjjbrMC/Meta-Train-Io-U.png) |
+|:--:| 
+| *Mean IoU* |
 
-- CE Loss
-  - ![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png)
+| ![text alt](https://i.ibb.co/M88HH4v/Meta-Train-Loss.png) |
+|:--:| 
+| *CE Loss* |
 
 ### Meta-Val Phase
-- Mean IoU
-  - ![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png)
+![text alt](https://i.ibb.co/8KXMZ6j/Meta-Val-Io-U.png)
+|:--:| 
+| *Mean IoU* |
 
-- CE Loss
-  - ![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
+![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
+|:--:| 
+| *CE Loss* |
 
 ## Acknowledgement
 - [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation)
