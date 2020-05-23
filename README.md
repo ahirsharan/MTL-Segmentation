@@ -144,8 +144,8 @@ Hyperparameters and options in `main.py`.
 ## Training
 ### Pre-Train Phase
 Mean IoU
-![text alt](https://i.ibb.co/3SGcf6G/Pre-Train-Io-U.png)
-![text alt](https://ibb.co/ySHvZ87)
+![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png)
+
 CE Loss
 ![text alt](https://i.ibb.co/cXzp0zz/Pre-Train-Loss.png)
 
