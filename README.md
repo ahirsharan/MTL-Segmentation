@@ -1,4 +1,3 @@
-### Note: Currently in Development
 ## Meta Transfer Learning for Few Shot Semantic Segmentation using U-Net
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -14,6 +13,7 @@
   - [Running Experiments](#Running-Experiments)
   - [Hyperparameters and Options](#Hyperparameters-and-Options)
   - [Training](#Training)
+  - [Results](#Results)
   - [Acknowledgement](#acknowledgement)
 
 <!-- /TOC -->
@@ -168,6 +168,20 @@ Hyperparameters and options in `main.py`.
 ![text alt](https://i.ibb.co/FVRZyBC/Meta-Val-Loss.png)
 |:--:| 
 | *CE Loss* |
+
+## Results
+- Some of the best results :wink:
+
+| ![text alt](https://i.ibb.co/p2MZXgB/10.jpg) |
+| ![text alt](https://i.ibb.co/dW4Z6K3/9.jpg) |
+| ![text alt](https://i.ibb.co/ssL1gM6/8.jpg) |
+| ![text alt](https://i.ibb.co/xH58Hdb/7.jpg) |
+| ![text alt](https://i.ibb.co/mGkZwQy/6.jpg) |
+| ![text alt](https://i.ibb.co/BL7SYh2/5.jpg) |
+| ![text alt](https://i.ibb.co/XxKpQyD/4.jpg) |
+| ![text alt](https://i.ibb.co/S7JYmQy/3.jpg) |
+| ![text alt](https://i.ibb.co/t8S7M0D/2.jpg) |
+| ![text alt](https://i.ibb.co/NWqy60t/1.jpg) |
 
 ## Acknowledgement
 - [Pytorch-Segmentation](https://github.com/yassouali/pytorch_segmentation)
