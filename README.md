@@ -1,5 +1,6 @@
 ## Meta Transfer Learning for Few Shot Semantic Segmentation using U-Net
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![PyTorch](https://img.shields.io/badge/pytorch-0.4.0-%237732a8)](https://github.com/ahirsharan/MTL_Segmentation.git)
 
 | ![alt text](https://i.ibb.co/SNCNP0L/11.jpg) |
 |:--:|
