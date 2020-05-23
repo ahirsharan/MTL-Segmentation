@@ -15,7 +15,7 @@
   - [Code structure](#code-structure)
   - [Running Experiments](#Running-Experiments)
   - [Hyperparameters and Options](#Hyperparameters-and-Options)
-  - [Training](#Training)
+  - [Training Plots](#Training-Plots)
   - [Results](#Results)
   - [Acknowledgement](#acknowledgement)
 
@@ -144,7 +144,7 @@ Hyperparameters and options in `main.py`.
 - `pre_step_size` The number of epochs to reduce the pre-train learning rate
 - `pre_custom_weight_decay` Weight decay for the optimizer during pre-train
 
-## Training
+## Training Plots
 ### Pre-Train Phase
 | ![text alt](https://i.ibb.co/Jr0Hx60/Pre-Train-Io-U.png) | 
 |:--:| 
