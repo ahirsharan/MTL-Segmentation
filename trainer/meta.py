@@ -75,7 +75,7 @@ class MetaTrainer(object):
             pre_save_path2 = 'batchsize' + str(args.pre_batch_size) + '_lr' + str(args.pre_lr) + '_gamma' + str(args.pre_gamma) + '_step' + \
                 str(args.pre_step_size) + '_maxepoch' + str(args.pre_max_epoch)
             pre_save_path = pre_base_dir + '/' + pre_save_path1 + '_' + pre_save_path2
-            pretrained_dict = torch.load(osp.join(pre_save_path, 'epoch200.pth'))['params']
+            pretrained_dict = torch.load(osp.join(pre_save_path, 'max_iou.pth'))['params']
         pretrained_dict = {'encoder.'+k: v for k, v in pretrained_dict.items()}
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in self.model_dict}
         
