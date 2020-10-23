@@ -168,7 +168,7 @@ Mean IoU             |  CE Loss
 - The Pre-trained weights for both Pre-Train and Meta Tasks can be found [here](https://drive.google.com/open?id=1WOPH5cHo0dbHgHTFW8KYxt4jMUYwH7MK) pertaining to Max-IoU. 
 
 - Some of the best results for 3-shot learning :smile: :
-|Image                         Ground Truth                        Prediction|
+### |Image                         Ground Truth                        Prediction|
 
 | ![text alt](https://i.ibb.co/p2MZXgB/10.jpg) |
 |:--:| 
