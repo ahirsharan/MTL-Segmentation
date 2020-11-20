@@ -145,7 +145,6 @@ class PreTrainer(object):
 
             # Using tqdm to read samples from train loader
             tqdm_gen = tqdm.tqdm(self.train_loader)
-            self._reset_metrics()
 
             for i, batch in enumerate(tqdm_gen, 1):
                 # Update global count number 
@@ -164,6 +163,7 @@ class PreTrainer(object):
                 loss = self.CD(logits,label) 
                 
                 # Calculate train accuracy
+                self._reset_metrics()
                 seg_metrics = eval_metrics(logits, label, self.args.num_classes)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.num_classes).values()
@@ -205,8 +205,7 @@ class PreTrainer(object):
             if epoch % 1 == 0:
                 print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']))
 
-            # Run meta-validation
-            self._reset_metrics()
+            # Run validation
             for i, batch in enumerate(self.val_loader, 1):
                 if torch.cuda.is_available():
                     data, labels,_ = [_.cuda() for _ in batch]
@@ -225,6 +224,7 @@ class PreTrainer(object):
                 loss = self.CD(logits,label)                 
                 
                 # Calculate val accuracy
+                self._reset_metrics()
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
