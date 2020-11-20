@@ -170,10 +170,13 @@ class MetaTrainer(object):
                 # Output logits for model
                 par=data_shot, label_shot, data_query
                 logits = self.model(par)
+                
                 # Calculate meta-train loss
                 #loss = self.FL(logits, label) + self.CD(logits,label) + self.LS(logits,label)
                 loss = self.CD(logits,label)
+                
                 # Calculate meta-train accuracy
+                self._reset_metrics()
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
@@ -213,7 +216,6 @@ class MetaTrainer(object):
                 print('Best Val Epoch {}, Best Val IoU={:.4f}'.format(trlog['max_iou_epoch'], trlog['max_iou']))
                 
             # Run meta
-            self._reset_metrics()
             for i, batch in enumerate(self.val_loader, 1):
                 if torch.cuda.is_available():
                     data, labels,_ = [_.cuda() for _ in batch]
@@ -232,6 +234,7 @@ class MetaTrainer(object):
                 loss = self.CD(logits,label)
                 
                 # Calculate meta-val accuracy
+                self._reset_metrics()
                 seg_metrics = eval_metrics(logits, label, self.args.way)
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
