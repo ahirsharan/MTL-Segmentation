@@ -184,7 +184,7 @@ class MetaTrainer(object):
                 train_iou_averager.add(mIoU)
 
                 # Print loss and accuracy till this step
-                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, train_loss_averager.item(), train_acc_averager.item()*100.0,train_iou_averager))
+                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, train_loss_averager.item(), train_acc_averager.item()*100.0,train_iou_averager.item()))
                 
                 # Loss backwards and optimizer updates
                 self.optimizer.zero_grad()
