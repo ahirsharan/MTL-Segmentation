@@ -178,14 +178,14 @@ class MetaTrainer(object):
                 self._update_seg_metrics(*seg_metrics)
                 pixAcc, mIoU, _ = self._get_seg_metrics(self.args.way).values()
                 
-                # Print loss and accuracy for this step
-                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, loss.item(), pixAcc*100.0,mIoU))
-
                 # Add loss and accuracy for the averagers
                 train_loss_averager.add(loss.item())
                 train_acc_averager.add(pixAcc)
                 train_iou_averager.add(mIoU)
 
+                # Print loss and accuracy till this step
+                tqdm_gen.set_description('Epoch {}, Loss={:.4f} Acc={:.4f} IoU={:.4f}'.format(epoch, train_loss_averager.item(), train_acc_averager.item()*100.0,train_iou_averager))
+                
                 # Loss backwards and optimizer updates
                 self.optimizer.zero_grad()
                 loss.backward()
